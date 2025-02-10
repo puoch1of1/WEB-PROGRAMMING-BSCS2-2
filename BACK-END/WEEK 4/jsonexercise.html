@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Asynchronous JSON Fetch Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    button { margin: 5px; padding: 10px; }
+    #displayArea { margin-top: 20px; white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Asynchronous JSON Dataset Fetch</h2>
+  <p>Select one of the methods below to fetch and process the dataset:</p>
+  <button id="btnCallback">Fetch Using Callback</button>
+  <button id="btnPromise">Fetch Using Promises</button>
+  <button id="btnAsync">Fetch Using Async/Await</button>
+  
+  <div id="displayArea"></div>
+  
+  <script>
+    // URL pointing to your downloaded JSON dataset.
+    // Make sure to host your files on a server (or use a local development server)
+    const myDatasetURL = 'http://localhost:8080/sample3.json';
+
+    // Utility function: Render the dataset in a structured format.
+    function renderFetchedData(dataset, methodLabel) {
+      let output = `Fetched using ${methodLabel}:\n`;
+      if (dataset.title) {
+        output += `Title: ${dataset.title}\n`;
+      }
+      if (Array.isArray(dataset.products)) {
+        output += 'Products:\n';
+        dataset.products.forEach(prod => {
+          output += `  • [ID: ${prod.id}] ${prod.name} - $${prod.price}\n`;
+        });
+      } else {
+        output += JSON.stringify(dataset, null, 2);
+      }
+      console.log(output);
+      document.getElementById('displayArea').textContent = output;
+    }
+
+    // 1. Using Callbacks (XMLHttpRequest)
+    function callbackFetchJSON(url, successCallback, failureCallback) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'json';
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          successCallback(xhr.response);
+        } else {
+          failureCallback(new Error('HTTP Status: ' + xhr.status));
+        }
+      };
+      xhr.onerror = function() {
+        failureCallback(new Error('Network error encountered'));
+      };
+      xhr.send();
+    }
+
+    // 2. Using Promises (fetch with then/catch)
+    function promiseFetchJSON(url) {
+      return fetch(url, { headers: { 'Accept': 'application/json' } })
+        .then(resp => {
+          if (!resp.ok) {
+            throw new Error('HTTP Error: ' + resp.status);
+          }
+          return resp.json();
+        })
+        .catch(err => {
+          console.error('Error with promise-based fetch:', err);
+          throw err;
+        });
+    }
+
+    // 3. Using Async/Await (with try/catch)
+    async function asyncFetchJSON(url) {
+      try {
+        const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        if (!resp.ok) {
+          throw new Error('HTTP Error: ' + resp.status);
+        }
+        const data = await resp.json();
+        return data;
+      } catch (err) {
+        console.error('Error with async/await fetch:', err);
+        throw err;
+      }
+    }
+
+    // Wire up buttons to call the respective functions
+    document.getElementById('btnCallback').addEventListener('click', function() {
+      callbackFetchJSON(myDatasetURL,
+        data => renderFetchedData(data, 'Callback'),
+        err => {
+          console.error('Callback fetch error:', err);
+          document.getElementById('displayArea').textContent = 'Error: ' + err.message;
+        }
+      );
+    });
+
+    document.getElementById('btnPromise').addEventListener('click', function() {
+      promiseFetchJSON(myDatasetURL)
+        .then(data => renderFetchedData(data, 'Promises'))
+        .catch(err => {
+          document.getElementById('displayArea').textContent = 'Error: ' + err.message;
+        });
+    });
+
+    document.getElementById('btnAsync').addEventListener('click', async function() {
+      try {
+        const data = await asyncFetchJSON(myDatasetURL);
+        renderFetchedData(data, 'Async/Await');
+      } catch (err) {
+        document.getElementById('displayArea').textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
