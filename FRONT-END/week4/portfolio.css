@@ -1,0 +1,113 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+/* Centering the content */
+.centered-content {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px; /* limit the max width */
+}
+
+h1 {
+    color: #e67e22;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #7f8c8d;
+}
+
+/* Styling the image */
+img {
+    width: 50%; /* Set the image width to 50% of the screen */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect for depth */
+    margin-bottom: 20px;
+}
+
+/* Styling the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #34495e;
+    color: white;
+}
+
+td {
+    background-color: #ecf0f1;
+}
+
+/* Link Styles */
+a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #3498db;
+}
+
+/* Buttons for links and interaction */
+button, a.button {
+    background-color: #e67e22;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, a.button:hover {
+    background-color: #d35400;
+}
+
+/* Section Styles */
+section {
+    margin: 40px 0;
+}
+
+section#contactme {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    img {
+        width: 80%; /* On smaller screens, make the image take up more space */
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .centered-content {
+        padding: 10px;
+    }
+}

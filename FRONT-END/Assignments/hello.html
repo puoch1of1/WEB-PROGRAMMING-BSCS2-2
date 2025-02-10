@@ -1,0 +1,113 @@
+<!DOCTYPE <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+    <head> <!-- This is the head element which contains the major data of the web application -->
+        <title>
+            My First Web Application
+        </title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          #btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          #btn:hover {
+            background-color: darkblue;
+          }
+        #variables {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          #variables:hover {
+            background-color: darkblue;
+          }
+        </style>
+    </head>
+    <body>
+        <center>
+            
+        <button id="btn" onclick="change()">
+            Change Button
+        </button>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!--Button to display variables-->
+        <button id="variables" onclick="variables()">
+            Display variables
+        </button><br>
+        </center>
+            <ol><li>Names</li></ol>
+            <ul>FirstName</ul>
+            <ul>LastName</ul>
+
+            <img src="" alt="This is a photo of the milky way" srcset="">
+            <table>
+                <tr>
+                    <th>DISTRICT</th>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>SCHOOL</th>
+                </tr>
+                <tr>
+                    <td>Kampala</td>
+                    <td>Alan GPT</td>
+                    <td>48</td>
+                    <td>Harvard Online Uni</td>
+                </tr>
+                <tr>
+                    <td>Gulu</td>
+                    <td>Travis</td>
+                    <td>48</td>
+                    <td>MIT Online Uni</td>
+                </tr>
+                <tr>
+                    <td>Kampala</td>
+                    <td>Alan GPT</td>
+                    <td>48</td>
+                    <td>Harvard Online Uni</td>
+                </tr>
+            </table>
+        <script>
+            // adding an event listener in javascript
+            document.getElementById('btn').addEventListener('click', function(){
+                alert("Button clicked!");
+            });
+
+            // changing button text on click
+
+            document.getElementById("variables").addEventListener('click', function(){
+                this.textContent = "Button clicked.";
+            });
+
+            let button = document.getElementById("variables");
+
+            button.addEventListener("mouseover", function(){
+                this.style.backgroundColor = "yellow";
+            });
+
+            button.addEventListener("mouseover", function(){
+                this.style.backgroundColor = "";
+            });
+        </script>
+    </body>
+</html>
