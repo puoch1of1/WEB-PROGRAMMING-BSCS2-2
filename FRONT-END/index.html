@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DYNAMIC APPLICATION</title>
+        <link rel="stylesheet" href="dynamicapplication.css">
+    </head>
+    <button id="alertButton" onclick="alert('Welcome to the Dynamic Website')">CLICK ME</button>
+        <p id="tes">This is the first html, css and javascript dynamic site</p>
+        <button id="changeTextButton">CHANGE</button>
+        <button id="Click" onclick="internalJs()">Internal JAVASCRIPT</button>
+        <button id="Change" onclick="changeBackground()">Change Background</button>
+        <input type="color" id="colorPicker" value="#ff0000">
+        
+        <script src="dynamicapplication.js"></script>
+        <script>
+            document.getElementById("changeTextButton").addEventListener("click", function() {
+                var paragraph = document.getElementById("tes");
+                if (paragraph.innerText === "This is the first html, css and javascript dynamic site") {
+                    paragraph.innerText = "New text here";
+                } else {
+                    paragraph.innerText = "This is the first html, css and javascript dynamic site";
+                }
+            });
+            function internalJs() {
+                var button = document.getElementById("Click");
+                if (button.innerText === "Internal Javascript") {
+                    button.innerText = "Internal JAVASCRIPT";
+                } else {
+                    button.innerText = "Internal Javascript";
+                }
+            }
+        </script>
+    </body>
+</html>
